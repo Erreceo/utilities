@@ -17,9 +17,11 @@ const IndexPage = () => {
   const handleProcessFile = () => {
     var fileText = ''
     if(files !== undefined){
+      // @ts-ignore
       for(var i = 0; i < files.length; i++){
         var file = new FileReader();
         file.onload = async (e) => {
+          // @ts-ignore
           const text = (e.target.result)
           //console.log(text)
           fileText = `${fileText+text}`
@@ -35,10 +37,12 @@ const IndexPage = () => {
           const outFile = new Blob([textOut], {type: 'text/plain'});
           const element = document.createElement("a");
           element.href = URL.createObjectURL(outFile);
+          // @ts-ignore
           element.download = `${files[0].name.replace('.sql', '')}-converted.sql`;
           document.body.appendChild(element); // Required for this to work in FireFox
           element.click();
         }
+        // @ts-ignore
         file.readAsText(files[i])
       }
     }
